@@ -1,0 +1,61 @@
+{
+  "name": "hive-api",
+  "version": "0.0.0",
+  "description": "My prime module",
+  "license": "MIT",
+  "repository": "kentcdodds/hive-api",
+  "author": {
+    "name": "Kent C. Dodds",
+    "email": "kent@doddsfamily.us",
+    "url": "kentcdodds.com"
+  },
+  "bin": "dist/cli.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "prebuild": "rimraf dist && mkdir dist",
+    "build": "babel src/ -d dist/",
+    "commit": "git-cz",
+    "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "report-coverage": "nyc report --reporter=text-lcov | codecov",
+    "start": "npm run test",
+    "test": "ava src/**/*.test.js --require babel-register",
+    "test:watch": "nodemon -w src --exec 'npm t -- --verbose'",
+    "test:cover": "nyc --reporter=lcov --reporter=text npm t",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "files": [
+    "dist/index.js",
+    "dist/cli.js"
+  ],
+  "keywords": [
+    "hive.am",
+    "shorten urls"
+  ],
+  "dependencies": {
+    "axios": "0.9.0",
+    "commander": "2.9.0",
+    "copy-paste": "1.1.4",
+    "qs": "6.0.2",
+    "user-home": "2.0.0"
+  },
+  "devDependencies": {
+    "ava": "0.10.0",
+    "babel-cli": "6.4.5",
+    "babel-preset-es2015": "6.3.13",
+    "babel-preset-stage-2": "6.3.13",
+    "commitizen": "2.5.0",
+    "eslint": "1.10.3",
+    "eslint-config-kentcdodds": "5.0.0",
+    "eslint-plugin-mocha": "1.1.0",
+    "ghooks": "1.0.3",
+    "nodemon": "1.8.1",
+    "nyc": "5.3.0",
+    "proxyquire": "1.7.3",
+    "rimraf": "2.5.0",
+    "semantic-release": "4.3.5",
+    "validate-commit-msg": "1.1.1"
+  }
+}
