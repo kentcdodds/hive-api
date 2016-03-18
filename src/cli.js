@@ -11,5 +11,8 @@ program
   .parse(process.argv)
 
 const {url, key, custom} = program
+if (!url) {
+  throw new Error('You must specify a URL!')
+}
 shorten(url, {key, custom})
 
